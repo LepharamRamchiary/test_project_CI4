@@ -40,6 +40,7 @@
         }
 
         .sidebar .nav-link.active {
+            font-weight: bold;
             background-color: #007bff;
         }
 

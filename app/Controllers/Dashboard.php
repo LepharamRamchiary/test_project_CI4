@@ -29,8 +29,21 @@ class Dashboard extends BaseController
 
     public function logout()
     {
+        if (session()->has('logged_info')) {
+            $la_id = session()->get('logged_info');
+            $this->dashboardModel->updateLogoutTime($la_id);
+        }
+
         session()->remove('logged_user');
         session()->destroy();
         return redirect()->to(base_url() . 'login');
+    }
+
+    public function login_activity()
+    {
+
+        $data['userdata'] = $this->dashboardModel->getLoggedUserData(session()->get('logged_user'));
+        $data['login_info'] = $this->dashboardModel->getLoginUserInfo(session()->get('logged_user'));
+        return view('login_activity_view', $data);
     }
 }

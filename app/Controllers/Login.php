@@ -33,6 +33,19 @@ class Login  extends BaseController
                 if ($userdata) {
                     if (password_verify($password, $userdata['password'])) {
                         if ($userdata['status'] == 'active') {
+                            $login_info = [
+                                'uniid' => $userdata['uniid'],
+                                'agent' => $this->getUserAgentInfo(),
+                                'ip' => $this->request->getIPAddress(),
+                                'login_time' => date('Y-m-d h:i:s'),
+                            ];
+
+                            $la_id = $this->loginModel->saveLoginInfo($login_info);
+
+                            if($la_id){
+                                $this->session->set('logged_info', $la_id);
+                            }
+
                             $this->session->set('logged_user', $userdata['uniid']);
                             return redirect()->to(base_url() . 'dashboard');
                         } else {
@@ -52,5 +65,21 @@ class Login  extends BaseController
             }
         }
         return view('login_view', $data);
+    }
+
+    public function getUserAgentInfo()
+    {
+        $agent = $this->request->getUserAgent();
+
+        if ($agent->isBrowser()) {
+            $currentAgent = $agent->getBrowser();
+        } else if ($agent->isRobot()) {
+            $currentAgent = $agent->getRobot();
+        } else if ($agent->isMobile()) {
+            $currentAgent = $agent->getMobile();
+        } else {
+            $currentAgent = 'Unidentified User Agent';
+        }
+        return $currentAgent;
     }
 }
