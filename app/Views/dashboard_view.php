@@ -47,7 +47,8 @@
 
         <!-- Dashboard Content -->
         <div class="container mt-4">
-            <h2>Welcome, User</h2>
+            <h2>Welcome, <?= ucfirst($userdata->username) ?></h2>
+            <h2>Phone No, <?= $userdata->phone ?></h2>
             <p>This is your dashboard where you can find an overview of recent activity.</p>
 
             <div class="row">
