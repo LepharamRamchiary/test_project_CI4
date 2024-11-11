@@ -24,8 +24,10 @@ class RegisterModel extends Model
         $builder->where('uniid', $id);
 
         $result = $builder->get();
-
-        if ($builder->countAll() == 1) {
+        // echo count($result->getResultArray());
+        // echo count();
+        // when we use $bulder->countall then we got all users account == 1 eg 2==1 it not working
+        if (count($result->getResultArray()) == 1) {
 
             return $result->getRow();
         } else {
