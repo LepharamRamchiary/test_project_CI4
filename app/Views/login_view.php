@@ -39,15 +39,31 @@
     <!-- Login Form -->
     <div class="container">
         <h2 class="text-center">Login</h2>
+
+        <?php if (isset($validation)): ?>
+            <div class="alert alert-danger">
+                <?= $validation->listErrors(); ?>
+            </div>
+        <?php endif; ?>
+
+        <?php if(session()->getTempdata('error')): ?>
+            <div class="alert alert-danger">
+                <?= session()->getTempdata('error'); ?>
+            </div>
+        <?php endif; ?>
+
+        
+
+
         <?php echo form_open(); ?>
 
         <div class="mb-3">
-            <label class="form-label">Email </label>
-            <input type="email" class="form-control" name="email" value="<?= set_value('email') ?>" required>
+            <label class="form-label">Email</label>
+            <input type="email" class="form-control" name="email" value="<?= set_value('email') ?>">
         </div>
         <div class="mb-3">
             <label class="form-label">Password</label>
-            <input type="password" class="form-control" id="password" name="password" required>
+            <input type="password" class="form-control" name="password">
         </div>
 
         <input type="submit" class="btn btn-primary" name="login" value="Login">

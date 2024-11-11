@@ -10,6 +10,11 @@
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f9;
+
+        }
+
+        .dis {
+            display: flex;
         }
 
         .hero-section {
@@ -21,6 +26,26 @@
 
         .navbar {
             margin-bottom: 20px;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: #343a40;
+            height: 100vh;
+            color: #ffffff;
+        }
+
+        .sidebar a {
+            color: #ffffff;
+        }
+
+        .sidebar .nav-link.active {
+            background-color: #007bff;
+        }
+
+        .content {
+            flex-grow: 1;
+            padding: 20px;
         }
     </style>
 </head>
@@ -37,13 +62,13 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" href="<?= base_url()?>">Home</a>
+                        <a class="nav-link active" href="<?= base_url() ?>">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= base_url()?>login">Login</a>
+                        <a class="nav-link" href="<?= base_url() ?>login">Login</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= base_url()?>register">Register</a>
+                        <a class="nav-link" href="<?= base_url() ?>register">Register</a>
                     </li>
                 </ul>
             </div>
