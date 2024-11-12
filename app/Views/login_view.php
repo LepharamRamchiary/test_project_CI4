@@ -46,13 +46,13 @@
             </div>
         <?php endif; ?>
 
-        <?php if(session()->getTempdata('error')): ?>
+        <?php if (session()->getTempdata('error')): ?>
             <div class="alert alert-danger">
                 <?= session()->getTempdata('error'); ?>
             </div>
         <?php endif; ?>
 
-        
+
 
 
         <?php echo form_open(); ?>
@@ -68,16 +68,22 @@
 
         <input type="submit" class="btn btn-primary" name="login" value="Login">
 
-        <div class="form-group mt-3">
-            <a href=""><img height="35" width="35" src="<?= base_url() ?>public/assets/google.png"><span style="padding-left: 10px;">Login with Google</span></a>
-        </div>
 
+        <?php if (isset($loginButton)): ?>
+            <div class="form-group mt-3">
+                <a href="<?= $loginButton ?>"><img height="35" width="35" src="<?= base_url() ?>public/assets/google.png"><span style="padding-left: 10px;">Login with Google</span></a>
+            </div>
+
+        <?php endif; ?>
         <?php echo form_close(); ?>
 
         <p class="text-center mt-3">Don't have an account? <a href="<?= base_url() ?>register">Register here</a></p>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+
+    
+    
 </body>
 
 </html>

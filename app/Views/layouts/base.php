@@ -66,7 +66,7 @@
                         <a class="nav-link active" href="<?= base_url() ?>">Home</a>
                     </li>
 
-                    <?php if (session()->has('logged_user')): ?>
+                    <?php if (session()->has('logged_user') || session()->has('google_user')): ?>
                         <li class="nav-item">
                             <a class="nav-link" href="<?= base_url() ?>dashboard/logout">Logout</a>
                         </li>

@@ -20,12 +20,48 @@ class LoginModel extends Model
         }
     }
 
-    public function saveLoginInfo($data){
+    public function saveLoginInfo($data)
+    {
         $builder = $this->db->table('login_activity');
         $builder->insert($data);
-        if($this->db->affectedRows()==1){
+        if ($this->db->affectedRows() == 1) {
             return $this->db->insertID();
-        }else{
+        } else {
+            return false;
+        }
+    }
+
+    public function google_user_exists($id)
+    {
+        $builder = $this->db->table('social_login');
+        $builder->where('oauth_id', $id);
+        if ($builder->countAllResults() == 1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function updateUser($id, $dataUser)
+    {
+        $builder = $this->db->table('social_login');
+        $builder->where('oauth_id', $id);
+        $builder->update($dataUser);
+
+        if ($this->db->affectedRows() == 1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function insertUser($dataUser)
+    {
+        $builder = $this->db->table('social_login');
+        $result = $builder->insert($dataUser);
+        if ($this->db->affectedRows() == 1) {
+            return true;
+        } else {
             return false;
         }
     }

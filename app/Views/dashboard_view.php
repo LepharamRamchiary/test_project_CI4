@@ -27,9 +27,19 @@
 
         <!-- Dashboard Content -->
         <div class="container mt-4">
-            <h2>Welcome, <?= ucfirst($userdata->username) ?></h2>
-            <h2>Phone No, <?= $userdata->phone ?></h2>
-            <p>This is your dashboard where you can find an overview of recent activity.</p>
+            <?php if (session()->has('google_user')): 
+                $uinfo = session()->get('google_user');
+                ?>
+                <div class="jumbotron">
+                <img src="<?= $uinfo['profile_pic']?>" height="100" width="100">
+                <p>Name:<?= $uinfo['first_name']?> <?= $uinfo['last_name']?></p>
+                <p>Email: <?= $uinfo['email']?></p>
+                </div>
+            <?php else: ?>
+                <h2>Welcome, <?= ucfirst($userdata->username) ?></h2>
+                <h2>Phone No, <?= $userdata->phone ?></h2>
+                <p>This is your dashboard where you can find an overview of recent activity.</p>
+            <?php endif; ?>
 
             <div class="row">
                 <div class="col-md-4">
